@@ -33,7 +33,7 @@ export default function OrdersPage({ orders }) {
     }
   };
 
-  const statuses = ["placed", "preparing", "ready", "pickup", "cancel", "undelivered"];
+  const statuses = ["placed", "preparing", "ready", "pickup", "cancel", "undelivered", "diwali"];
 
   return (
     <div>
