@@ -4,14 +4,14 @@ export default function OrdersPage({ orders }) {
   const [orderList, setOrderList] = useState(orders); // Use state for real-time updates
   const [message, setMessage] = useState("");
 
-  const updateOrderStatus = async (orderId, newStatus) => {
+  const updateOrderStatus = async (orderId, customerId, newStatus) => {
     try {
       const response = await fetch(`http://localhost:8000/api/v1/orders/${orderId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ order_status: newStatus }),
+        body: JSON.stringify({ order_status: newStatus, customer_id: customerId }),
       });
 
       if (response.ok) {
@@ -57,7 +57,7 @@ export default function OrdersPage({ orders }) {
                 {statuses.map((status) => (
                   <button
                     key={status}
-                    onClick={() => updateOrderStatus(order.OrderID, status)}
+                    onClick={() => updateOrderStatus(order.OrderID, order.customer_id, status)}
                     style={{
                       margin: "5px",
                       padding: "5px 10px",
